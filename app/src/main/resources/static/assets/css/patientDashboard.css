@@ -1,0 +1,180 @@
+/* ----------------------------------------
+  RESET & BASE
+---------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: #f5f8fa;
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------
+  DOCTOR CARD
+---------------------------------------- */
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.doctor-card {
+  flex: 1 1 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.doctor-card .card-body {
+  padding: 1rem;
+}
+
+.doctor-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.doctor-card p {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.card-actions {
+  background: #015c5d;
+  color: #fff;
+  text-align: center;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.card-actions:hover {
+  background: #013f40;
+}
+
+/* ----------------------------------------
+  RIPPLE EFFECT
+---------------------------------------- */
+.ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(0, 92, 93, 0.4);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(15);
+    opacity: 0;
+  }
+}
+
+/* ----------------------------------------
+  BOTTOM POP-UP MODAL (.modalApp)
+---------------------------------------- */
+.modalApp {
+  position: fixed;
+  left: 50%;
+  bottom: -100%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.4s ease;
+  z-index: 1000;
+}
+
+.modalApp.active {
+  bottom: 0;
+}
+
+/* ----------------------------------------
+  MODAL FORM FIELDS
+---------------------------------------- */
+.modalApp input,
+.modalApp select {
+  display: block;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.75rem 1rem;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.modalApp .confirm-btn {
+  display: block;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 0.75rem 1rem;
+  background: #015c5d;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.modalApp .confirm-btn:hover {
+  filter: brightness(1.2);
+}
+
+/* ----------------------------------------
+  RESPONSIVE
+---------------------------------------- */
+@media (max-width: 600px) {
+  .filter-wrapper {
+    flex-direction: column;
+  }
+
+  .searchBar {
+    max-width: 100%;
+  }
+
+  #content {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Doctor Dashboard</title>
+  <link rel="icon" th:href="@{/assets/images/favicon.ico}" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+
+  <!-- Utility Scripts -->
+  <script th:src="@{/js/render.js}" defer></script>
+  <script th:src="@{/js/util.js}" defer></script>
+
+  <!-- Components -->
+  <script th:src="@{/js/components/header.js}" defer></script>
+  <script th:src="@{/js/components/footer.js}" defer></script>
+  <script th:src="@{/js/components/patientRows.js}" defer></script>
+
+  <!-- Services & Logic -->
+  <script type="module" th:src="@{/js/services/patientServices.js}" defer></script>
+  <script type="module" th:src="@{/js/services/doctorDashboard.js}" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+
+      <!-- Dynamic Header -->
+      <div id="header"></div>
+
+      <!-- Main Dashboard Content -->
+      <main class="main-content">
+        <!-- Search Bar -->
+        <input type="text" id="searchBar" placeholder="Search patient name or ID" />
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <button id="todayAppointments" class="filter-btn">Today's Appointments</button>
+          <input type="date" id="dateFilter" />
+        </div>
+
+        <!-- Patient Records Table -->
+        <table id="patientTable">
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Prescription</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic rows will be rendered by patientRows.js -->
+          </tbody>
+        </table>
+      </main>
+
+      <!-- Dynamic Footer -->
+      <div id="footer"></div>
+
+    </div>
+  </div>
+</body>
+</html>

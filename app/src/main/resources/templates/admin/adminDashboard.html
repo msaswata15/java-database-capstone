@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+
+  <!-- Page-specific and global CSS -->
+  <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+
+  <!-- Utility and rendering logic JS -->
+  <script th:src="@{/js/render.js}" defer></script>
+  <script th:src="@{/js/util.js}" defer></script>
+
+  <!-- Layout components (header & footer) -->
+  <script th:src="@{/js/components/header.js}" defer></script>
+  <script th:src="@{/js/components/footer.js}" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      
+      <!-- Header will be loaded dynamically -->
+      <div id="header"></div>
+
+      <main class="main-content">
+        <!-- Search Bar -->
+        <input 
+          type="text" 
+          id="searchBar" 
+          placeholder="Search by doctor name" 
+          class="search-bar"
+        />
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <select id="filterTime">
+            <option value="">Sort by Time</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+
+          <select id="filterSpecialty">
+            <option value="">Filter by Specialty</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Dermatology">Dermatology</option>
+            <!-- Add more specialties as needed -->
+          </select>
+        </div>
+
+        <!-- Dynamic Doctor Cards will render here -->
+        <div id="content" class="doctor-cards-container"></div>
+      </main>
+
+      <!-- Footer will be loaded dynamically -->
+      <div id="footer"></div>
+
+    </div>
+  </div>
+
+  <!-- Hidden Modal for Add Doctor -->
+  <div id="modal" class="modal">
+    <span id="closeModal" class="close">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+
+  <!-- Admin Dashboard & Doctor Card Logic -->
+  <script type="module" th:src="@{/js/services/adminDashboard.js}" defer></script>
+  <script type="module" th:src="@{/js/components/doctorCard.js}" defer></script>
+</body>
+</html>

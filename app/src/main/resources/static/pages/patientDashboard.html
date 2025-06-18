@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Dashboard</title>
+  <link rel="icon" href="../assets/images/favicon.ico" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/patientDashboard.css" />
+
+  <!-- Utility & Components JS -->
+  <script src="../js/render.js" defer></script>
+  <script src="../js/util.js" defer></script>
+  <script src="../js/components/header.js" defer></script>
+  <script src="../js/components/footer.js" defer></script>
+  <script type="module" src="../js/components/modals.js"></script>
+</head>
+<body onload="renderContent()">
+
+  <div class="container">
+    <div class="wrapper">
+      <!-- Dynamic Header -->
+      <div id="header"></div>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Search Bar -->
+        <input type="text" id="searchBar" class="searchBar" placeholder="Search doctors by name..." />
+
+        <!-- Filters -->
+        <div class="filter-wrapper">
+          <select class="filter-select" id="filterTime">
+            <option value="">Filter by Time</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+
+          <select class="filter-select" id="filterSpecialty">
+            <option value="">Filter by Specialty</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <!-- Add more specialties as needed -->
+          </select>
+        </div>
+
+        <!-- Doctors List -->
+        <div id="content"></div>
+      </main>
+
+      <!-- Dynamic Footer -->
+      <div id="footer"></div>
+    </div>
+  </div>
+
+  <!-- Reusable Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Patient Dashboard Logic -->
+  <script type="module" src="../js/patientDashboard.js" defer></script>
+</body>
+</html>

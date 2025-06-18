@@ -1,0 +1,163 @@
+/* Reset & Base Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Wrapper & Layout */
+.container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+/* Search Bar & Filters */
+#searchBar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background: #015c5d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filter-btn:hover {
+  background: #017d7e;
+}
+
+#dateFilter {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Patient Table */
+#patientTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#patientTable thead {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+#patientTable thead th {
+  padding: 12px 10px;
+  text-align: left;
+}
+
+#patientTable tbody tr {
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  transition: background 0.3s;
+}
+
+#patientTable tbody tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+#patientTable tbody tr:hover {
+  background: #e6f7f7;
+}
+
+#patientTable tbody td {
+  padding: 12px 10px;
+}
+
+/* Prescription Button */
+.prescription-btn {
+  background: #015c5d;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.prescription-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* No Patient Record Placeholder */
+.noPatientRecord {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #searchBar, #dateFilter {
+    width: 100%;
+  }
+
+  .filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #patientTable thead, #patientTable tbody, #patientTable th, #patientTable td, #patientTable tr {
+    display: block;
+  }
+
+  #patientTable thead {
+    display: none;
+  }
+
+  #patientTable tbody tr {
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  #patientTable tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  #patientTable tbody td:last-child {
+    border-bottom: none;
+  }
+}
