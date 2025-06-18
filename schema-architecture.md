@@ -1,50 +1,44 @@
-✅ Section 1: Architecture Summary
-The Smart Clinic Management System is designed as a three-tier web application using Spring Boot, which combines both Spring MVC with Thymeleaf for admin and doctor dashboards, and REST APIs for patient-facing and appointment modules.
+# Smart Clinic Management System — Architecture Design
 
-The system uses:
+## 1️⃣ Architecture Summary
 
-Thymeleaf templates for rendering server-side HTML dashboards for Admins and Doctors.
+This Spring Boot application uses both **MVC** and **REST controllers** to serve different modules.  
+The **Admin** and **Doctor Dashboards** use **Thymeleaf templates** for server-side rendering of HTML pages, while modules like **Appointments**, **Patient Dashboard**, and **Patient Records** expose **REST APIs** that return JSON.  
+The application connects to **two databases**:  
+- **MySQL** for structured data like patients, doctors, appointments, and admin records.  
+- **MongoDB** for flexible, document-based data like prescriptions.  
 
-RESTful endpoints for scalable, JSON-based communication for appointments, patient dashboards, and records.
+All controllers delegate business logic to a **service layer**, which in turn communicates with **repositories** that abstract the database access. MySQL uses **JPA entities**, while MongoDB uses **document models**.
 
-A MySQL database for storing structured and relational data (e.g., patient info, doctor schedules, appointments, and admin details).
+---
 
-A MongoDB database for storing flexible, document-based data such as prescriptions.
+## 2️⃣ Numbered Flow of Data and Control
 
-Requests flow from the UI layer to the Controller layer, which routes them to the Service layer where business logic and validation are applied. Services interact with the Repository layer to perform database operations. Data is then mapped into models and returned to the client either as an HTML page (MVC) or as a JSON response (REST API).
+1. **User Interaction**  
+   - Users access the system through Thymeleaf-based dashboards (Admin, Doctor) or REST API clients (mobile app, frontend modules).
 
-This hybrid design makes the application scalable, maintainable, and cloud-ready, supporting both traditional web interactions and modern API consumption.
+2. **Controller Layer**  
+   - Requests for HTML pages are handled by **Thymeleaf Controllers** that return `.html` templates.  
+   - Requests for data APIs are handled by **REST Controllers** that return JSON responses.
 
-🔢 Section 2: Numbered Flow of Data and Control
-1️⃣ User Request:
-Users interact with the system through either:
+3. **Service Layer**  
+   - Controllers pass requests to the **service layer**, which contains the core business logic and validations.
 
-Thymeleaf dashboards for Admin and Doctor interfaces, or
+4. **Repository Layer**  
+   - Services call the **repository layer** to fetch or persist data.
+   - There are separate repositories for MySQL (Spring Data JPA) and MongoDB (Spring Data MongoDB).
 
-REST API clients for Appointments, Patient Dashboards, and Records.
+5. **Databases**  
+   - Repositories connect to either **MySQL** (for structured data) or **MongoDB** (for flexible prescription data).
 
-2️⃣ Request Routing:
-Requests are mapped to the appropriate Thymeleaf Controller or REST Controller based on the URL and HTTP method.
+6. **Model Binding**  
+   - Retrieved data is bound to Java model classes (`@Entity` for MySQL, `@Document` for MongoDB).
 
-3️⃣ Controller Logic:
-Controllers validate inputs, handle routing, and pass control to the Service Layer for further processing.
+7. **Response to Client**  
+   - In MVC, models are passed to Thymeleaf templates to render dynamic HTML.  
+   - In REST, models or DTOs are serialized to JSON and sent back as API responses.
 
-4️⃣ Business Logic Processing:
-The Service Layer applies business rules (e.g., verifying doctor availability, checking patient details) and coordinates actions involving multiple entities.
+---
 
-5️⃣ Repository Access:
-The Service Layer interacts with the Repository Layer:
-
-MySQL Repositories (Spring Data JPA) for relational data.
-
-MongoDB Repository (Spring Data MongoDB) for flexible, document-based data.
-
-6️⃣ Database Operations:
-Repositories abstract and execute database CRUD operations on MySQL tables and MongoDB collections.
-
-7️⃣ Response Generation:
-
-For MVC flows: Retrieved data populates model attributes rendered into Thymeleaf templates to produce dynamic HTML pages.
-
-For REST flows: Data is serialized as JSON and returned to the client as a RESTful API response.
+✅ **This architecture ensures a clean separation of concerns, scalability, and flexibility to serve both web pages and API clients efficiently.**
 
