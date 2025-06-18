@@ -1,0 +1,54 @@
+<!-- updateAppointment.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
+    <title>DoctorDashboard</title>
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css">
+    <link rel="stylesheet" href="../assets/css/doctorDashboard.css">
+    <link rel="stylesheet" href="../assets/css/updateAppointment.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../js/render.js" defer></script>
+    <script src="../js/util.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src="../js/updateAppointment.js" defer></script>
+</head>
+
+<body onload="renderContent()">
+    <div class="container">
+        <div class="wrapper">
+            <div id="header"></div>
+            <div class="main-content">
+                <div class="form-container">
+                    <h2>Update <span>Appointment</span></h2>
+                    <form id="updateAppointmentForm">
+                        <label for="patientName">Patient Name</label>
+                        <input type="text" id="patientName" disabled>
+
+                        <label for="doctorName">Doctor Name</label>
+                        <input type="text" id="doctorName" disabled>
+
+                        <label for="appointmentDate">Date</label>
+                        <input type="date" id="appointmentDate" required>
+
+                        <label for="appointmentTime">Time</label>
+                        <select id="appointmentTime" required>
+                        </select>
+
+                        <button type="submit" class="btn-primary" id="updateAppointment">Update Appointment</button>
+                        <button type="button" onclick="window.location.href='/pages/patientAppointments.html'"
+                            class="btn-secondary">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

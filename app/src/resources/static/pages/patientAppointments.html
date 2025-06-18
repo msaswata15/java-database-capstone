@@ -1,0 +1,52 @@
+<!-- patientAppointment.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
+  <title>Patient Appointments</title>
+  <link rel="stylesheet" href="../assets/css/adminDashboard.css">
+  <link rel="stylesheet" href="../assets/css/doctorDashboard.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../js/render.js" defer></script>
+  <script src="../js/util.js" defer></script>
+  <script src="../js/components/header.js" defer></script>
+  <script src="../js/components/footer.js" defer></script>
+  <script type="module" src="../js/patientAppointment.js" defer></script>
+</head>
+
+<body onload="renderContent()">
+  <div class="container">
+    <div class="wrapper">
+      <div id="header"></div>
+      <div class="main-content">
+        <h2>Patient <span>Appointment</span></h2>
+        <input type="text" id="searchBar" class="searchBar" placeholder="Search Bar for custom output" />
+                <div class="filter-wrapper">
+                    <select class="filter-select" id="appointmentFilter">
+                        <option value="allAppointments">All Appointments</option>
+                        <option value="future">Upcoming Appointments</option>
+                        <option value="past">Past Appointments</option>
+                    </select>
+                </div>
+        <table id="patientTable">
+          <thead class="table-header">
+            <tr>
+              <th>Patient Name</th>
+              <th>Doctor Name</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patientTableBody">
+            <!-- rows will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </div>
+      <div id="footer"></div>
+    </div>
+  </div>
+</body>
+</html>

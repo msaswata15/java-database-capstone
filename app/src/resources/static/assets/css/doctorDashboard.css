@@ -1,0 +1,65 @@
+/* This is the style sheet for the doctorDashboard.html */
+/* 
+**Table Header (`.table-header`)**
+
+* Set font size to `24px` for clear emphasis.
+* Use a dark teal color (`#015c5d`) for consistency with the theme.
+* Add `30px` bottom margin and remove right margin.
+
+**Table Styling (`table`)**
+
+* Make the table full width (`100%`).
+* Collapse borders for clean lines.
+* Use a `sans-serif` font.
+* Add `20px` top margin for spacing.
+
+**Table Head (`thead`)**
+
+* Set a very light dark background (`#33333310`) for header row.
+* Use white text color (`#fff`).
+
+**Table Cells (`td, th`)**
+
+* Apply padding of `12px 16px` for spacing.
+* Center-align the text.
+* Add a subtle bottom border (`1px solid #ddd`).
+
+**Table Row Styling**
+
+* Alternate row colors for better readability:
+
+  * Even rows: semi-transparent light grey (`#f9f9f959`).
+  * Odd rows: soft white background (`#ffffffc0`).
+* On hover: highlight row with a light teal overlay (`#015c5d39`).
+
+**Prescription Button (`.prescription-btn`)**
+
+* Set size to `30px x 30px`.
+* Make it interactive with a pointer cursor.
+* Add transition effects for scale and brightness on hover.
+* On hover:
+
+  * Slightly enlarge (`scale(1.1)`)
+  * Brighten appearance
+* On click: slightly shrink (`scale(0.95)`).
+
+**No Record Message (`.noPatientRecord`)**
+
+* Use a `16px` italic grey font to indicate no data gently.
+
+**Today Button (`.today-btn`)**
+
+* Add right margin (`10px`).
+* Add padding (`10px`).
+* Set background color to teal green (`#015c5d`).
+
+**Date Picker (`.date-picker`)**
+
+* Add left margin (`10px`) and top margin (`13px`).
+* Round corners with `8px` radius.
+* Add padding (`10px`) and set fixed height (`30px`).
+
+---
+
+Let me know if you'd like a consolidated style guide for the entire HospitalCRM frontend.
+ */

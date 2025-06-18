@@ -1,0 +1,52 @@
+<!-- addPrescription.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
+    <title>DoctorDashboard</title>
+    <link rel="stylesheet" href="../assets/css/adminDashboard.css">
+    <link rel="stylesheet" href="../assets/css/doctorDashboard.css">
+    <link rel="stylesheet" href="../assets/css/addPrescription.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../js/render.js" defer></script>
+    <script src="../js/util.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script type="module" src = "../js/addPrescription.js"></script>
+
+</head>
+
+<body onload="renderContent()">
+    <div class="container">
+        <div class="wrapper">
+            <div id="header"></div>
+            <div class="main-content">
+                <div class="form-container">
+                    <h2 id="heading">Add <span>Prescription</span></h2>
+                    <form>
+                        <label for="patientName">Patient Name</label>
+                        <input type="text" id="patientName" disabled>
+
+                        <label for="medicines">Medicine Names</label>
+                        <input type="text" id="medicines" placeholder="e.g. Paracetamol, Vitamin C" required>
+
+                        <label for="dosage">Dosage Instructions</label>
+                        <textarea id="dosage" rows="3"
+                            placeholder="e.g - Paracetamol"></textarea>
+
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" rows="3"
+                            placeholder="Any precautions or observations (optional)"></textarea>
+
+                        <button type="submit" class="btn-primary" id="savePrescription">Add Prescription</button>
+                        <button type="button" onclick="selectRole('doctor')" class="btn-secondary">Cancel</button>
+                    </form>
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+</body>
+</html>

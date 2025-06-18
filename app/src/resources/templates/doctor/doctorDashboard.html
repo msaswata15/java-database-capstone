@@ -1,0 +1,101 @@
+<!-- doctorDashboard.html -->
+
+<!-- 
+Step-by-Step Explanation of `doctorDashboard.html`
+This file defines the Doctor Dashboard interface, allowing doctors to view and manage their patient appointments, search records, and access patient prescriptions.
+
+1. Label the File
+
+   * Add a comment at the top to identify the file as `doctorDashboard.html`.
+
+2. Declare the Document Type
+
+   * Use `<!DOCTYPE html>` to define the document as an HTML5 file for consistent behavior across modern browsers.
+
+3. Begin the HTML Document with Thymeleaf Namespace
+
+   * The `<html>` tag includes `xmlns:th="http://www.thymeleaf.org"` to enable Thymeleaf-specific attributes used in Spring Boot applications.
+
+4. Head Section – Metadata and Assets
+
+   * Start the `<head>` section to include essential meta information, styles, and scripts.
+
+5. Set Character Encoding
+
+   * Use `<meta charset="UTF-8">` to support all text characters and prevent encoding issues.
+
+6. Set the Favicon
+
+   * Add a favicon using Thymeleaf pathing: 
+     `<link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />`
+
+7. Set the Page Title
+
+   * Title the page `"Doctor Dashboard"` to show it in the browser tab.
+
+8. Link CSS Stylesheets
+
+   * Include necessary CSS files:
+     - `adminDashboard.css` (for shared layout styles with admin interface)
+     - `doctorDashboard.css` (for doctor-specific styles)
+     - `style.css` (for general UI components)
+
+9. Link JavaScript Files (with `defer`)
+
+   * Load scripts using Thymeleaf's `th:src` and `defer` attribute to prevent blocking rendering:
+     - `render.js` – Handles common rendering logic.
+     - `util.js` – Provides utility functions.
+     - `header.js` and `footer.js` – Dynamically inject header/footer.
+     - `doctorDashboard.js` – Contains dashboard logic for doctor functionality, loaded as a module.
+
+10. Close the Head and Begin the Body
+
+    * Begin the visible part of the webpage using `<body onload="renderContent()">`, which calls a JavaScript function after loading.
+
+11. Create the Main Container
+
+    * Use `<div class="container">` to wrap all content and structure the page.
+
+12. Add a Wrapper for Page Content
+
+    * Nest elements inside a `wrapper` div for structured layout control.
+
+13. Insert a Header Placeholder
+
+    * Add `<div id="header"></div>` where the dynamic header will be injected.
+
+14. Define the Main Content Area
+
+    * Use `<div class="main-content">` for the central section of the dashboard.
+
+15. Add a Search Bar
+
+    * Include an input field with `id="searchBar"` for doctors to search patients or data:
+      ```html
+      <input type="text" id="searchBar" class="searchBar" placeholder="Search Bar for custom output" />
+      ```
+
+16. Add Filter Controls
+
+    * Include a filter section:
+      - A button (`#todayButton`) to view today's appointments.
+      - A date picker (`#datePicker`) to select specific dates.
+
+17. Add a Patient Table
+
+    * Display a table to list patient data:
+      - Headers: Patient ID, Name, Phone No., Email, and Prescription.
+      - Body: `<tbody id="patientTableBody"></tbody>` for dynamic content insertion.
+
+18. Insert a Footer Placeholder
+
+    * Use `<div id="footer"></div>` to load a common footer via JavaScript.
+
+19. Close the Wrapper and Container
+
+    * Close `wrapper` and `container` divs to maintain structural integrity.
+
+20. End the Body and HTML
+
+    * Properly close the `<body>` and `<html>` tags to complete the document.
+ -->

@@ -1,0 +1,80 @@
+/* This is the style sheet for the patientDashboard.html */
+  .card-actions {
+    background-color: #244557;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .card-actions:hover{
+    background-color: #1c3745;
+  }
+  .ripple-overlay {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #1c3745;
+    border-radius: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 1s ease-out, opacity 1s ease;
+  }
+  
+  .ripple-overlay.active {
+    transform: translate(-50%, -50%) scale(150);
+    opacity: 1;
+  }
+  
+  .modalApp {
+    position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  background: #fff;
+  padding: 20px;
+  z-index: 10000;
+  transition: bottom 1.5s ease-in;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  }
+  
+  .modalApp.active {
+    bottom: 0;
+  }
+  
+  .modalApp h2 {
+    margin-top: 20px;
+  }
+  
+  .modalApp input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+    margin-bottom: 40px;
+  }
+
+  .modalApp select {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+    margin-bottom: 40px;
+  }
+  
+  .confirm-booking {
+    padding: 10px 20px;
+    background: #1c3745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    
+  
+    
+  }
+  .confirm-booking:hover {
+    filter: brightness(1.2);
+    background-color: #1c3745;
+  }
+  

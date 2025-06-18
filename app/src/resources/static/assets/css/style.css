@@ -1,0 +1,382 @@
+/* This is the style sheet for global change across the files. */
+
+/* style.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+    flex-wrap: wrap;
+    min-height: 60px;
+  }
+  
+  /* Logo section with image + title */
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+  }
+  
+  .logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Logo text / slogan */
+  .logo-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Nav links styling */
+  nav a {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: #003e3e;
+  }
+  
+
+  /* Responsive behavior */
+  @media (max-width: 600px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav {
+      margin-top: 10px;
+    }
+  
+    nav a {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  
+    .logo-img {
+      height: 30px;
+    }
+  
+    .logo-title {
+      font-size: 18px;
+    }
+  }
+
+  .doctorHeader{
+    margin-right: 30px
+  }
+  .doctorHeader:hover{
+    color:#A62B1F;
+  }
+/* Footer Section */
+.footer {
+    background-color: #f4f4f4;
+    color: #fff;
+    padding: 40px 20px;
+    border-top: 2px solid #f4f4f4;
+    
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-logo {
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .footer-logo img {
+    height: 50px;
+    width: auto;
+  }
+  
+  .footer-logo p {
+    font-size: 14px;
+    color: #0a0a23;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex: 2 1 500px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-column h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #0a0a23;
+  }
+  
+  .footer-column a {
+    text-decoration: none;
+    color: #0a0a23;
+    font-size: 14px;
+  }
+  
+  .footer-column a:hover {
+    color: #003e3e;
+    transition: color 0.3s ease;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+  }
+  
+  .modal-content h2{
+    font-size: 32px;
+  }
+
+  .close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: black;
+  }
+
+
+
+  .dashboard-btn{
+    width: 100%;
+  }
+
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    appearance: none; /* Remove default OS styles */
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .input-field:hover {
+    border-color: #015c5d;
+    background-color: #f0fdfd;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.5);
+    filter: brightness(1.2);
+  }
+  
+  .select-dropdown option {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+
+  #content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+    gap: 40px;
+    padding: 20px;
+  }
+
+  .doctor-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width:auto;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .doctor-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .doctor-info {
+    padding: 12px;
+    flex-grow: 1;
+  }
+  
+  .doctor-info h3 {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #015c5d;
+  }
+  
+  .doctor-info p {
+    margin: 20px 0px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card-actions {
+    background-color: #e28282;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .card-actions:hover {
+    background-color: #d26969;
+  }
+  
+  .card-actions button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .card-actions button:hover {
+    color: #fff;
+    border-color: #015c5d;
+  }
+  
+  #roleSelector {
+    width:auto;
+    border-radius: 10px;
+  }
+  
+  span {
+    color : #A62B1F;
+  }
+
+  .searchBar{
+    height: 30px;
+    padding:20px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: 0.2px solid grey;
+}
+
+  .searchBar:focus{
+    outline: none;
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+}
+
+.filter-wrapper {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.filter-select {
+  margin-right: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filter-select:focus {
+  border-color: #015c5d;
+  box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+  outline: none;
+}
+
+.availabilityLabel{
+  margin-bottom: 8px;
+}
+
+.availability-container {
+  margin-bottom: 1rem;
+  
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.checkbox-group label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #015c5db8; 
+}
+

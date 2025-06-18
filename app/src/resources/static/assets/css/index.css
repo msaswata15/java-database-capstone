@@ -1,0 +1,53 @@
+/* this is the style sheet file for index.htlm  */
+
+/* 
+**Global Reset (`*`)**
+
+* Remove all default margin and padding.
+* Use `border-box` for sizing to include padding and border in element size.
+
+**Base (`html, body`)**
+
+* Set height to 100% for full viewport layout.
+* Use the `'Roboto'` sans-serif font for modern, clean typography.
+
+**Layout Wrapper (`.wrapper`)**
+
+* Use a vertical flexbox layout.
+* Ensure the wrapper covers at least the full height of the screen (`min-height: 100vh`).
+
+**Heading (`h2`)**
+
+* Set a large font size (`48px`) for prominence.
+* Add a bottom margin of `50px` for spacing.
+* Use a dark teal color (`#003e3e`).
+* Make the font bold and use a blended font stack (`'Alegreya', 'Roboto', sans-serif`) for elegant styling.
+
+**Main Section (`.main-content`)**
+
+* Allow the section to grow to fill space with `flex-grow: 1`.
+* Add `40px` of internal padding.
+* Center content both horizontally and vertically using `justify-content` and `align-items`.
+* Display items in a column direction.
+* Center all text.
+* Apply a full-screen background image with:
+
+  * `cover` size
+  * `center` positioning
+  * no repeat
+  * `fixed` attachment to keep image still during scroll
+
+**Buttons (`button`)**
+
+* Style with a teal green background (`#015c5d`) and white text.
+* Remove borders and round the corners (`12px`).
+* Use `10px 20px` padding and set width to `200px`.
+* Add a top margin of `10px` for spacing.
+* Enable pointer cursor and readable font size (`16px`).
+* On hover, change background color to bold red (`#A62B1F`).
+
+**Dashboard Buttons (`.dashboard-btn`)**
+
+* Use the same base green background (`#015c5d`) as the default button.
+* On hover, darken the background to deep teal (`#003e3e`) for visual feedback.
+ */
