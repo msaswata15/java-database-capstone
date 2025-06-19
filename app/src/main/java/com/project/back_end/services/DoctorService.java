@@ -1,10 +1,10 @@
-package com.project.back_end.service;
+package com.project.back_end.services;
 
 import com.project.back_end.models.Doctor;
-import com.project.back_end.models.Login;
+import com.project.back_end.DTO.Login;
 import com.project.back_end.models.Appointment;
-import com.project.back_end.repository.AppointmentRepository;
-import com.project.back_end.repository.DoctorRepository;
+import com.project.back_end.repo.AppointmentRepository;
+import com.project.back_end.repo.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,22 +34,17 @@ public class DoctorService {
         List<String> allSlots = Arrays.asList(
                 "09:00 AM", "10:00 AM", "11:00 AM",
                 "12:00 PM", "01:00 PM", "02:00 PM",
-                "03:00 PM", "04:00 PM", "05:00 PM"
-        );
+                "03:00 PM", "04:00 PM", "05:00 PM");
 
         LocalDateTime start = date.atStartOfDay();
         LocalDateTime end = date.atTime(LocalTime.MAX);
         List<Appointment> appointments = appointmentRepository.findByDoctorIdAndAppointmentTimeBetween(
-                doctorId, start, end
-        );
-
-        Set<String> bookedSlots = appointments.stream()
-                .map(a -> a.getAppointmentTime().toLocalTime().toString())
-                .collect(Collectors.toSet());
+                doctorId, start, end);
 
         // Convert booked slots to readable format
         List<String> bookedReadable = appointments.stream()
-                .map(a -> a.getAppointmentTime().toLocalTime().toString())
+                .map(a -> a.getAppointmentTime().toLocalTime().format(
+                    java.time.format.DateTimeFormatter.ofPattern("hh:mm a")))
                 .collect(Collectors.toList());
 
         // Return slots not in booked slots
@@ -117,7 +112,7 @@ public class DoctorService {
         if (doctorOpt.isPresent()) {
             Doctor doctor = doctorOpt.get();
             if (doctor.getPassword().equals(login.getPassword())) {
-                String token = tokenService.generateToken(doctor.getEmail());
+                String token = tokenService.generateToken(doctor.getEmail(), "DOCTOR");
                 response.put("token", token);
                 return ResponseEntity.ok(response);
             } else {
@@ -208,8 +203,6 @@ public class DoctorService {
      * ✅ Private helper to filter doctors by AM/PM.
      */
     private List<Doctor> filterDoctorByTime(List<Doctor> doctors, String amOrPm) {
-        // This is an example assuming you store availability as string slots.
-        // Adapt to your actual Doctor model.
         return doctors.stream().filter(doctor -> {
             List<String> slots = doctor.getAvailableTimes();
             return slots.stream().anyMatch(slot -> slot.endsWith(amOrPm.toUpperCase()));

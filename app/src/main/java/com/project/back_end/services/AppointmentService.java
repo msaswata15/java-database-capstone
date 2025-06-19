@@ -1,11 +1,11 @@
-package com.project.back_end.service;
+package com.project.back_end.services;
 
 import com.project.back_end.models.Appointment;
 import com.project.back_end.models.Doctor;
 import com.project.back_end.models.Patient;
-import com.project.back_end.repository.AppointmentRepository;
-import com.project.back_end.repository.DoctorRepository;
-import com.project.back_end.repository.PatientRepository;
+import com.project.back_end.repo.AppointmentRepository;
+import com.project.back_end.repo.DoctorRepository;
+import com.project.back_end.repo.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,7 @@ public class AppointmentService {
 
     /**
      * ✅ Book a new appointment.
+     * 
      * @param appointment the appointment object to book
      * @return 1 if success, 0 if failed
      */
@@ -46,6 +47,7 @@ public class AppointmentService {
 
     /**
      * ✅ Update an existing appointment.
+     * 
      * @param appointment the appointment object with updated data
      * @return response entity with message
      */
@@ -64,7 +66,8 @@ public class AppointmentService {
 
     /**
      * ✅ Cancel an existing appointment.
-     * @param id appointment ID to cancel
+     * 
+     * @param id    appointment ID to cancel
      * @param token JWT token for authentication
      * @return response entity with message
      */
@@ -91,9 +94,11 @@ public class AppointmentService {
     }
 
     /**
-     * ✅ Get appointments for a doctor on a specific date, optionally filtered by patient name.
+     * ✅ Get appointments for a doctor on a specific date, optionally filtered by
+     * patient name.
+     * 
      * @param pname patient name to filter by
-     * @param date appointment date
+     * @param date  appointment date
      * @param token JWT token for doctor auth
      * @return map containing list of appointments
      */
@@ -112,8 +117,9 @@ public class AppointmentService {
                 appointments = appointmentRepository.findByDoctorIdAndAppointmentTimeBetween(
                         doctor.getId(), start, end);
             } else {
-                appointments = appointmentRepository.findByDoctorIdAndAppointmentTimeBetweenAndPatientNameContainingIgnoreCase(
-                        doctor.getId(), start, end, pname);
+                appointments = appointmentRepository
+                        .findByDoctorIdAndAppointmentTimeBetweenAndPatientNameContainingIgnoreCase(
+                                doctor.getId(), start, end, pname);
             }
 
             response.put("appointments", appointments);

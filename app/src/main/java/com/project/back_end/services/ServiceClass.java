@@ -1,21 +1,14 @@
-package com.project.back_end.service;
+package com.project.back_end.services;
 
-import com.project.back_end.dto.Login;
-import com.project.back_end.models.Admin;
-import com.project.back_end.models.Appointment;
-import com.project.back_end.models.Doctor;
-import com.project.back_end.models.Patient;
-import com.project.back_end.repository.AdminRepository;
-import com.project.back_end.repository.DoctorRepository;
-import com.project.back_end.repository.PatientRepository;
+import com.project.back_end.DTO.Login;
+import com.project.back_end.models.*;
+import com.project.back_end.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceClass {
@@ -29,11 +22,11 @@ public class ServiceClass {
 
     @Autowired
     public ServiceClass(TokenService tokenService,
-                        AdminRepository adminRepository,
-                        DoctorRepository doctorRepository,
-                        PatientRepository patientRepository,
-                        DoctorService doctorService,
-                        PatientService patientService) {
+            AdminRepository adminRepository,
+            DoctorRepository doctorRepository,
+            PatientRepository patientRepository,
+            DoctorService doctorService,
+            PatientService patientService) {
         this.tokenService = tokenService;
         this.adminRepository = adminRepository;
         this.doctorRepository = doctorRepository;
@@ -44,15 +37,8 @@ public class ServiceClass {
 
     /**
      * ✅ Validate JWT token for given user type
-     */
-    public ResponseEntity<Map<String, String>> validateToken(String token, String user) {
-        Map<String, String> response = new HashMap<>();
-        if (!tokenService.validateToken(token, user)) {
-            response.put("message", "Invalid or expired token");
-            return ResponseEntity.status(401).body(response);
-        }
-        response.put("message", "Token is valid");
-        return ResponseEntity.ok(response);
+     */    public boolean validateToken(String token, String user) {
+        return tokenService.validateToken(token, user);
     }
 
     /**
@@ -75,25 +61,23 @@ public class ServiceClass {
     /**
      * ✅ Filter doctors by name, specialty, and time
      */
-    public Map<String, Object> filterDoctor(String name, String specialty, String time) {
-        List<Doctor> doctors = doctorService.filterDoctorsByNameSpecialityAndTime(name, specialty, time);
-        Map<String, Object> response = new HashMap<>();
-        response.put("doctors", doctors);
-        return response;
+    public Map<String, Object> filterDoctor(String name, String specialty, String time) {        return doctorService.filterDoctorsByNameSpecialtyAndTime(name, specialty, time);
     }
 
     /**
      * ✅ Validate if an appointment time is available for given doctor
      */
-    public int validateAppointment(Appointment appointment) {
-        Optional<Doctor> doctorOpt = doctorRepository.findById(appointment.getDoctorId());
-        if (doctorOpt.isEmpty()) {
+    public int validateAppointment(Appointment appointment) {        if (!doctorRepository.findById(appointment.getDoctorId()).isPresent()) {
             return -1; // Doctor not found
-        }
-        Doctor doctor = doctorOpt.get();
-        List<String> availableTimes = doctorService.getDoctorAvailability(doctor);
+        }List<String> availableTimes = doctorService.getDoctorAvailability(
+            appointment.getDoctorId(), 
+            appointment.getAppointmentTime().toLocalDate()
+        );
 
-        String appointmentTime = appointment.getAppointmentTime().toLocalTime().toString();
+        String appointmentTime = appointment.getAppointmentTime().toLocalTime().format(
+            java.time.format.DateTimeFormatter.ofPattern("hh:mm a")
+        );
+        
         if (availableTimes.contains(appointmentTime)) {
             return 1; // Valid
         } else {
@@ -103,10 +87,8 @@ public class ServiceClass {
 
     /**
      * ✅ Check if patient with same email or phone already exists
-     */
-    public boolean validatePatient(Patient patient) {
-        Patient found = patientRepository.findByEmailOrPhone(patient.getEmail(), patient.getPhone());
-        return found == null;
+     */    public boolean validatePatient(Patient patient) {
+        return patientRepository.findByEmailOrPhone(patient.getEmail(), patient.getPhone()).isEmpty();
     }
 
     /**
@@ -114,10 +96,10 @@ public class ServiceClass {
      */
     public ResponseEntity<Map<String, String>> validatePatientLogin(Login login) {
         Map<String, String> response = new HashMap<>();
-        Patient patient = patientRepository.findByEmail(login.getEmail());
+        Optional<Patient> patientOpt = patientRepository.findByEmail(login.getEmail());
 
-        if (patient != null && patient.getPassword().equals(login.getPassword())) {
-            String token = tokenService.generateToken(patient.getEmail(), "patient");
+        if (patientOpt.isPresent() && patientOpt.get().getPassword().equals(login.getPassword())) {
+            String token = tokenService.generateToken(patientOpt.get().getEmail(), "patient");
             response.put("token", token);
             return ResponseEntity.ok(response);
         } else {

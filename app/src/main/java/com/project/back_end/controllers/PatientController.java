@@ -1,9 +1,9 @@
-package com.project.back_end.controller;
+package com.project.back_end.controllers;
 
-import com.project.back_end.dto.Login;
+import com.project.back_end.DTO.Login;
 import com.project.back_end.models.Patient;
-import com.project.back_end.service.PatientService;
-import com.project.back_end.service.ServiceClass;
+import com.project.back_end.services.PatientService;
+import com.project.back_end.services.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +71,7 @@ public class PatientController {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid token!"));
         }
 
-        return ResponseEntity.ok(patientService.getPatientAppointment(id));
+        return ResponseEntity.ok(patientService.getPatientAppointment(id, token));
     }
 
     /**
@@ -87,7 +87,7 @@ public class PatientController {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid token!"));
         }
 
-        return ResponseEntity.ok(service.filterPatient(condition, name));
+        return ResponseEntity.ok(service.filterPatient(condition, name, token));
     }
 
 }

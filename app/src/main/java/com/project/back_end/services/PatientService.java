@@ -1,10 +1,10 @@
-package com.project.back_end.service;
+package com.project.back_end.services;
 
-import com.project.back_end.dto.AppointmentDTO;
+import com.project.back_end.DTO.AppointmentDTO;
 import com.project.back_end.models.Appointment;
 import com.project.back_end.models.Patient;
-import com.project.back_end.repository.AppointmentRepository;
-import com.project.back_end.repository.PatientRepository;
+import com.project.back_end.repo.AppointmentRepository;
+import com.project.back_end.repo.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +27,7 @@ public class PatientService {
 
     /**
      * ✅ Create a new patient.
+     * 
      * @param patient Patient object to save
      * @return 1 on success, 0 on failure
      */
@@ -50,7 +51,18 @@ public class PatientService {
         if (patientOpt.isPresent() && Objects.equals(patientOpt.get().getId(), id)) {
             List<Appointment> appointments = appointmentRepository.findByPatientId(id);
             List<AppointmentDTO> dtos = appointments.stream()
-                    .map(AppointmentDTO::new)
+                    .map(app -> new AppointmentDTO(
+                        app.getId(),
+                        app.getDoctor() != null ? app.getDoctor().getId() : null,
+                        app.getDoctorName(),
+                        app.getPatient() != null ? app.getPatient().getId() : null,
+                        app.getPatient() != null ? app.getPatient().getName() : null,
+                        app.getPatient() != null ? app.getPatient().getEmail() : null,
+                        app.getPatient() != null ? app.getPatient().getPhone() : null,
+                        app.getPatient() != null ? app.getPatient().getAddress() : null,
+                        app.getAppointmentTime(),
+                        app.getStatus()
+                    ))
                     .collect(Collectors.toList());
             response.put("appointments", dtos);
             return ResponseEntity.ok(response);
@@ -81,7 +93,18 @@ public class PatientService {
         }
 
         List<AppointmentDTO> dtos = filtered.stream()
-                .map(AppointmentDTO::new)
+                .map(app -> new AppointmentDTO(
+                    app.getId(),
+                    app.getDoctor() != null ? app.getDoctor().getId() : null,
+                    app.getDoctorName(),
+                    app.getPatient() != null ? app.getPatient().getId() : null,
+                    app.getPatient() != null ? app.getPatient().getName() : null,
+                    app.getPatient() != null ? app.getPatient().getEmail() : null,
+                    app.getPatient() != null ? app.getPatient().getPhone() : null,
+                    app.getPatient() != null ? app.getPatient().getAddress() : null,
+                    app.getAppointmentTime(),
+                    app.getStatus()
+                ))
                 .collect(Collectors.toList());
 
         response.put("appointments", dtos);
@@ -100,7 +123,18 @@ public class PatientService {
                 .collect(Collectors.toList());
 
         List<AppointmentDTO> dtos = filtered.stream()
-                .map(AppointmentDTO::new)
+                .map(app -> new AppointmentDTO(
+                    app.getId(),
+                    app.getDoctor() != null ? app.getDoctor().getId() : null,
+                    app.getDoctorName(),
+                    app.getPatient() != null ? app.getPatient().getId() : null,
+                    app.getPatient() != null ? app.getPatient().getName() : null,
+                    app.getPatient() != null ? app.getPatient().getEmail() : null,
+                    app.getPatient() != null ? app.getPatient().getPhone() : null,
+                    app.getPatient() != null ? app.getPatient().getAddress() : null,
+                    app.getAppointmentTime(),
+                    app.getStatus()
+                ))
                 .collect(Collectors.toList());
 
         response.put("appointments", dtos);
@@ -110,7 +144,8 @@ public class PatientService {
     /**
      * ✅ Filter appointments by condition and doctor's name.
      */
-    public ResponseEntity<Map<String, Object>> filterByDoctorAndCondition(String condition, String name, long patientId) {
+    public ResponseEntity<Map<String, Object>> filterByDoctorAndCondition(String condition, String name,
+            long patientId) {
         Map<String, Object> response = new HashMap<>();
         List<Appointment> appointments = appointmentRepository.findByPatientId(patientId);
 
@@ -127,7 +162,18 @@ public class PatientService {
                 .collect(Collectors.toList());
 
         List<AppointmentDTO> dtos = filtered.stream()
-                .map(AppointmentDTO::new)
+                .map(app -> new AppointmentDTO(
+                    app.getId(),
+                    app.getDoctor() != null ? app.getDoctor().getId() : null,
+                    app.getDoctorName(),
+                    app.getPatient() != null ? app.getPatient().getId() : null,
+                    app.getPatient() != null ? app.getPatient().getName() : null,
+                    app.getPatient() != null ? app.getPatient().getEmail() : null,
+                    app.getPatient() != null ? app.getPatient().getPhone() : null,
+                    app.getPatient() != null ? app.getPatient().getAddress() : null,
+                    app.getAppointmentTime(),
+                    app.getStatus()
+                ))
                 .collect(Collectors.toList());
 
         response.put("appointments", dtos);
@@ -149,6 +195,11 @@ public class PatientService {
             response.put("message", "Patient not found.");
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    public boolean checkPatient(Patient patient) {
+        // Returns true if patient exists (for controller logic)
+        return patientRepository.findByEmailOrPhone(patient.getEmail(), patient.getPhone()).isPresent();
     }
 
 }

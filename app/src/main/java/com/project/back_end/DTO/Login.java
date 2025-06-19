@@ -1,4 +1,4 @@
-package com.project.back_end.dto;
+package com.project.back_end.DTO;
 
 public class Login {
 
@@ -6,7 +6,8 @@ public class Login {
     private String password;
 
     // ✅ No-args constructor (good practice for Spring deserialization)
-    public Login() {}
+    public Login() {
+    }
 
     // ✅ All-args constructor (optional)
     public Login(String email, String password) {

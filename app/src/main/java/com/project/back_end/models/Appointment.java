@@ -102,4 +102,18 @@ public class Appointment {
         return this.appointmentTime.toLocalTime();
     }
 
+    @Transient
+    public Long getDoctorId() {
+        return doctor != null ? doctor.getId() : null;
+    }
+
+    @Transient
+    public Long getPatientId() {
+        return patient != null ? patient.getId() : null;
+    }
+
+    @Transient
+    public String getDoctorName() {
+        return doctor != null ? doctor.getName() : null;
+    }
 }

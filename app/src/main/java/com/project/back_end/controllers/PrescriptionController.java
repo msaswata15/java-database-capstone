@@ -1,8 +1,8 @@
-package com.project.back_end.controller;
+package com.project.back_end.controllers;
 
 import com.project.back_end.models.Prescription;
-import com.project.back_end.service.PrescriptionService;
-import com.project.back_end.service.ServiceClass;
+import com.project.back_end.services.PrescriptionService;
+import com.project.back_end.services.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

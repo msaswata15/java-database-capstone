@@ -1,4 +1,4 @@
-package com.project.back_end.dto;
+package com.project.back_end.DTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,9 +23,9 @@ public class AppointmentDTO {
 
     // ✅ Constructor
     public AppointmentDTO(Long id, Long doctorId, String doctorName,
-                          Long patientId, String patientName, String patientEmail,
-                          String patientPhone, String patientAddress,
-                          LocalDateTime appointmentTime, int status) {
+            Long patientId, String patientName, String patientEmail,
+            String patientPhone, String patientAddress,
+            LocalDateTime appointmentTime, int status) {
         this.id = id;
         this.doctorId = doctorId;
         this.doctorName = doctorName;

@@ -1,7 +1,7 @@
-package com.project.back_end.controller;
+package com.project.back_end.controllers;
 
 import com.project.back_end.models.Admin;
-import com.project.back_end.service.ServiceClass;
+import com.project.back_end.services.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +21,7 @@ public class AdminController {
 
     /**
      * ✅ Admin Login Endpoint
+     * 
      * @param admin Admin credentials from request body
      * @return ResponseEntity with JWT token if valid, error message otherwise
      */

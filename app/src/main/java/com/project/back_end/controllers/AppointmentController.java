@@ -1,8 +1,8 @@
-package com.project.back_end.controller;
+package com.project.back_end.controllers;
 
 import com.project.back_end.models.Appointment;
-import com.project.back_end.service.AppointmentService;
-import com.project.back_end.service.ServiceClass;
+import com.project.back_end.services.AppointmentService;
+import com.project.back_end.services.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +53,7 @@ public class AppointmentController {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid token!"));
         }
 
-        if (!service.validateAppointment(appointment)) {
+        if (service.validateAppointment(appointment) != 1) {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid appointment details!"));
         }
 

@@ -1,9 +1,9 @@
-package com.project.back_end.controller;
+package com.project.back_end.controllers;
 
-import com.project.back_end.dto.Login;
+import com.project.back_end.DTO.Login;
 import com.project.back_end.models.Doctor;
-import com.project.back_end.service.DoctorService;
-import com.project.back_end.service.ServiceClass;
+import com.project.back_end.services.DoctorService;
+import com.project.back_end.services.ServiceClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +36,8 @@ public class DoctorController {
 
         if (!service.validateToken(token, user)) {
             return ResponseEntity.badRequest().body(Map.of("error", "Invalid token!"));
-        }
-
-        LocalDate localDate = LocalDate.parse(date);
-        return ResponseEntity.ok(doctorService.getDoctorAvailability(user, doctorId, localDate));
+        }        LocalDate localDate = LocalDate.parse(date);
+        return ResponseEntity.ok(doctorService.getDoctorAvailability(doctorId, localDate));
     }
 
     /**
