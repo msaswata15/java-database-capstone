@@ -1,0 +1,19 @@
+on: [push, pull_request]
+
+jobs:
+  compile-backend:
+	runs-on: ubuntu-latest
+	name: Compile Backend Code
+	steps:
+	  - uses actions/checkout@v3
+
+	  - name: Set up JDK
+		uses: actions/setup-java@v4
+		with:
+		  distribution: 'temurin'
+		  java-version: '17'
+
+	  - name: Compile with Maven
+		run: |
+		  cd app
+		  ./mvnw clean compile
